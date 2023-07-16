@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+{% block title %}
+Accelerometer Sensor Details
+{% endblock title %}
+
+
+
+{% block body %}
+ <h3 class="text-center"><span>Accelerometer Sensor Details</span> </h3>
+  
+{% with messages=get_flashed_messages(with_categories=true) %}
+{% if messages %}
+{% for category, message in messages %}
+
+<div class="alert alert-{{category}} alert-dismissible fade show" role="alert">
+    {{message}}
+
+
+</div>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+<br>
+
+
+<table class="table">
+  <thead class="thead-light">
+    <tr>
+      <th scope="col">SID</th>
+      <th scope="col">X Axis</th>
+      <th scope="col">Y Axis</th>
+      <th scope="col">Z Axis</th>
+      <th scope="col">Latitude</th>
+      <th scope="col">Longitude</th>
+      <th scope="col">EDIT</th>
+      <th scope="col">DELETE</th>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for post in query %}
+    <tr>
+      <th scope="row">{{post.id}}</th>
+      <td>{{post.XAxis}}</td>
+      <td>{{post.YAxis}}</td>
+      <td>{{post.ZAxis}}</td>
+      <td>{{post.Latitude}}</td>
+      <td>{{post.Longitude}}</td>
+    <td><a href="/delete/{{post.id}}"><button onclick="return confirm('Are you sure to Delete data');" class="btn btn-danger">Delete </button> </a> </td>
+    </tr>
+{% endfor %}
+  
+  </tbody>
+</table>
+
+
+
+
+
+
+{% endblock body %}
